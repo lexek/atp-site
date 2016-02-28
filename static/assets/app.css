@@ -1,0 +1,20 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden !important;
+}
+
+body {
+    min-width: 800px;
+    min-height: 600px;
+}
+
+.md-dark-theme.md-icon,
+.md-dark-theme.md-button,
+.md-dark-theme.material-icons,
+.md-dark-theme .md-caption {
+    color: rgba(255,255,255,0.87) !important;
+}
