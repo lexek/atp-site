@@ -1,3 +1,4 @@
+from database import DATABASES
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,25 +55,6 @@ WSGI_APPLICATION = 'atp.wsgi.application'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': './my.cnf',
-        },
-    },
-    'staging': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'read_default_file': './pg.cnf',
-        },
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
