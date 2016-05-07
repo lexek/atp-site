@@ -1,4 +1,4 @@
 .idea
 my.cnf
 **.pyc
-/atp/database.py
+/atp/extra_settings.py
