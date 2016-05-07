@@ -64,6 +64,12 @@ DATABASES = {
         'OPTIONS': {
             'read_default_file': './my.cnf',
         },
+    },
+    'staging': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'read_default_file': './pg.cnf',
+        },
     }
 }
 
