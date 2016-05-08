@@ -18,6 +18,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'portal',
     'streams',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
 )
 
