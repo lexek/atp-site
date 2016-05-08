@@ -12,6 +12,9 @@ class Game(models.Model):
     giantbomb_id = models.IntegerField(null=True, unique=True)
     gg_id = models.IntegerField(null=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Channel(models.Model):
     name = models.CharField(max_length=16)
