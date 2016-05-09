@@ -9,156 +9,35 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="/static/bower_components/angular-material/angular-material.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/static/assets/app.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+
 
     <style type="text/css">
-        /**
-         * Hide when Angular is not yet loaded and initialized
-         */
-        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-            display: none !important;
-        }
     </style>
 
     <script type="text/javascript">
-        PRELOADED_CHANNELS = {{ preloaded_channels|safe }};
-        USER_NAME = "{{ user.username }}";
     </script>
 </head>
 
-{%verbatim%}
-<body ng-app="starterApp" layout="column" ng-controller="ChannelController as c" ng-cloak layout-fill>
-<md-toolbar flex="none" class="" md-theme="dark">
-    <div class="md-toolbar-tools" layout="row">
-        <div flex="mone" layout="row">
-            <span flex="none" style="width: 108px; height: 64px; background-image: url('../static/assets/logo.png')">
-            </span>
-        </div>
-        <div flex="grow" layout="row">
-            <div flex layout="column">
-                <div class="md-title" flex="70">
-                    <md-menu>
-                        <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)">
-                            <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
-                            {{ c.selectedChannel.name }} : {{ c.selectedChannel.status }}
-                        </md-button>
-                        <md-menu-content layout="column">
-                            <div ng-repeat-start="channel in c.channels">
-                                <md-menu-item ng-repeat="player in channel.players" flex="grow">
-                                    <md-button ng-click="c.selectChannel(channel, player)">
-                                        <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
-                                        {{ channel.name }}
-                                    </md-button>
-                                </md-menu-item>
-                            </div>
-                            <md-menu-divider ng-repeat-end ng-if="!$last"></md-menu-divider>
-                        </md-menu-content>
-                    </md-menu>
-                </div>
-                <div class="md-caption" flex="30" style="padding: 0 14px">
-                    {{ c.selectedChannel.streamerName }} стримит
-                    {{ c.selectedChannel.game }} и его смотрит
-                    {{ c.selectedChannel.totalViewers }} человек
-                </div>
-            </div>
-            <md-button class="md-icon-button" aria-label="Edit" flex="none" ng-click="t.toggleEditingMode()">
-                <md-icon class="material-icons">edit</md-icon>
-            </md-button>
-        </div>
-        <div flex="none" style="width:350px" layout="row">
-            <md-button class="md-icon-button" href="https://twitter.com/atPlay_channel" aria="Twitter" target="_blank">
-                <md-icon md-svg-icon="twitter"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" href="https://vk.com/atplay" aria="Vk" target="_blank">
-                <md-icon md-svg-icon="vk"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" href="https://www.youtube.com/user/ATPGAMESCHANNEL" aria="Youtube"
-                       target="_blank">
-                <md-icon md-svg-icon="youtube"></md-icon>
-            </md-button>
-            <span flex></span>
-            <md-button class="md-button" aria-label="account" flex="none">
-                {{ userName }} <md-icon class="material-icons">power_settings_new</md-icon>
-            </md-button>
-        </div>
-    </div>
-</md-toolbar>
+<body>
 
-<div layout="row" flex="grow" layout-align="space-between">
-    <div flex="none" ng-controller="PlayerController as p" class="md-whiteframe-10dp" layout="row" layout-align="middle" layout-margin>
-        <div
-            flex="none"
-            layout-align="center"
-            ng-include="'/static/channels/view/' + c.selectedPlayer.provider + '.html'"
-            style="overflow: hidden; background-color: black;"
-            class="md-whiteframe-10dp"
-            ></div>
-    </div>
-    <div flex="grow" style="min-width:350px" layout="column" layout-margin class="md-whiteframe-10dp">
-        <iframe flex="grow" frameborder="0" scrolling="no" id="chat_embed"
-                src="https://atplay.ch:1337/chat.html"></iframe>
-    </div>
+<div id="header">
+    
 </div>
 
-<script src="/static/bower_components/jquery/dist/jquery.js"></script>
-<script src="/static/bower_components/angular/angular.js"></script>
-<script src="/static/bower_components/angular-animate/angular-animate.js"></script>
-<script src="/static/bower_components/angular-aria/angular-aria.js"></script>
-<script type="text/javascript" src="/static/bower_components/angular-material/angular-material.js"></script>
+<div id="content">
+  <div id="player">
+        
+  </div>
+  <div id="chatbox">
+      
+  </div>    
+</div>
 
-<script src="/static/channels/Channels.js"></script>
-<script src="/static/channels/ChannelController.js"></script>
-<script src="/static/channels/ChannelService.js"></script>
-<script src="/static/channels/PlayerDirective.js"></script>
-
-<script type="text/javascript">
-    angular
-        .module('starterApp', ['ngMaterial', 'channels'])
-        .config(function ($mdThemingProvider, $mdIconProvider, $sceDelegateProvider) {
-            $mdIconProvider
-                .icon("twitch", "/static/assets/svg/twitch.svg", 1140)
-                .icon("cybergame", "/static/assets/svg/cybergame.svg", 85)
-                .icon("ustream", "/static/assets/svg/ustream.svg", 182)
-                .icon("youtube", "/static/assets/svg/youtube.svg", 192)
-                .icon("vk", "/static/assets/svg/vk.svg", 1024)
-                .icon("twitter", "/static/assets/svg/twitter.svg", 512);
-
-            $mdThemingProvider.definePalette('dark', {
-                "50": "#c1c5da",
-                "100": "#9198be",
-                "200": "#6d77a9",
-                "300": "#4d5583",
-                "400": "#41496f",
-                "500": "#363c5c",
-                "600": "#2b2f49",
-                "700": "#1f2335",
-                "800": "#ffffff",
-                "900": "#ffffff",
-                "A100": "#c1c5da",
-                "A200": "#9198be",
-                "A400": "#41496f",
-                "A700": "#1f2335"
-            });
-
-            $mdThemingProvider.theme('dark')
-             .primaryPalette('dark');
-
-            $sceDelegateProvider.resourceUrlWhitelist([
-                'self',
-                'http://api.cybergame.tv/**',
-                "http://www.twitch.tv/**",
-                "http://player.twitch.tv/**",
-                "http://www.ustream.tv/embed/**"
-            ]);
-
-        })
-        .run(function ($rootScope) {
-            $rootScope.userName = USER_NAME;
-        });
-</script>
+<div id="footer">
+    
+</div>
 
 </body>
-{%endverbatim%}
 </html>
