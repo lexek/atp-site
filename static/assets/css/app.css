@@ -10,6 +10,7 @@ html, body {
 body {
     min-width: 800px;
     min-height: 600px;
+    background-image: url('/static/assets/img/bg/default.PNG');
 }
 
 /*elements*/
@@ -54,6 +55,7 @@ body {
       }
       #atp-player > iframe {
       	flex-grow: 1;
+      	width: 60vw;
       }
     #atp-chatbox {
       display: flex; flex-flow: column wrap; justify-content: stretch; align-items: center;
@@ -61,6 +63,8 @@ body {
       border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 
       background-color: rgba(0,0,0,0.3);
+
+      width: 15vw;
       }
       #atp-chatbox > iframe {
       	flex-grow: 1;
