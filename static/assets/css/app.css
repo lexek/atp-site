@@ -10,7 +10,11 @@ html, body {
 body {
     min-width: 800px;
     min-height: 600px;
-    background: url('/static/assets/img/bg/default.PNG') no-repeat center fixed cover;
+    background-image: url('/static/assets/img/bg/default.PNG');
+    background-repeat:  no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /*elements*/
