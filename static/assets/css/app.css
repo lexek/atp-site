@@ -10,11 +10,20 @@ html, body {
 body {
     min-width: 800px;
     min-height: 600px;
-    background-image: url('/static/assets/img/bg/default.PNG') no-repeat center fixed cover;
+    background: url('/static/assets/img/bg/default.PNG') no-repeat center fixed cover;
 }
 
 /*elements*/
 
+[class*="el-flex-"] {
+  display: flex;
+  }
+  .el-flex-horizontal {
+  	flex-flow: row wrap;
+  }
+  .el-flex-vertical {
+  	flex-flow: column wrap;
+  }
 /*end*/
 
 /*helpers*/
@@ -33,10 +42,17 @@ body {
   padding: 0; margin: 0;
   }
   #atp-header {
+  	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
+
   	height: 15vh; width: 100vw;
 
   	background-color: rgba(0,0,0,0.7);
-  }
+    }
+    #atp-header--title {
+      flex-grow: 1;
+
+      display: flex; flex-flow: column wrap; justify-content: center; align-items: center;
+    }
   #atp-content {
   	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
 
@@ -44,7 +60,7 @@ body {
 
  	padding: 0; margin: 0;
     }
-    #atp-player {
+    #atp-content--player {
       flex-grow: 1;
 
       display: flex; flex-flow: row wrap;	align-items: center; justify-content: center;
@@ -53,12 +69,12 @@ body {
 
       background-color: rgba(0,0,0,0.3);
       }
-      #atp-player > iframe {
+      #atp-content--player > iframe {
       	/*flex-grow: 1;*/
       	width: 60vw;
       	height: 80vh;
       }
-    #atp-chatbox {
+    #atp-content--chatbox {
       display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch;
 
       border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
@@ -67,7 +83,7 @@ body {
 
       width: 25vw;
       }
-      #atp-chatbox > iframe {
+      #atp-content--chatbox > iframe {
       	flex-grow: 1;
       }
   #atp-footer {
