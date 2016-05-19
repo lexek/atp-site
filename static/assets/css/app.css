@@ -12,6 +12,61 @@ body {
     min-height: 600px;
 }
 
+/*elements*/
+
+/*end*/
+
+/*helpers*/
+
+/*end*/
+
+/*main*/
+
+#cardboard-box-B {
+  position: fixed; top: 0; left: 0;
+
+  background: transparent;
+
+  height: 100vh; width: 100vw;
+
+  padding: 0; margin: 0;
+  }
+  #atp-header {
+  	height: 10vh; width: 100vw;
+
+  	background-color: rgba(0,0,0,0.7);
+  }
+  #atp-content {
+  	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
+
+  	height: 90vh; width: 100vw;
+
+ 	padding: 0; margin: 0;
+    }
+    #atp-player {
+    	flex-grow: 1;
+
+    	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
+
+    	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+
+    	background-color: rgba(0,0,0,0.3);
+    }
+    #atp-chatbox {
+    	flex-grow: 1;
+
+    	display: flex; flex-flow: column wrap; justify-content: stretch; align-items: center;
+
+    	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+
+    	background-color: rgba(0,0,0,0.3);
+    }
+  #atp-footer {
+  	width: 100vw;
+  }
+
+/*end*/
+
 .md-dark-theme.md-icon,
 .md-dark-theme.md-button,
 .md-dark-theme.material-icons,
