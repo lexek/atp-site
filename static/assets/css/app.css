@@ -10,7 +10,7 @@ html, body {
 body {
     min-width: 800px;
     min-height: 600px;
-    background-image: url('/static/assets/img/bg/default.PNG');
+    background-image: url('/static/assets/img/bg/default.PNG') no-repeat center fixed cover;
 }
 
 /*elements*/
@@ -33,38 +33,39 @@ body {
   padding: 0; margin: 0;
   }
   #atp-header {
-  	height: 10vh; width: 100vw;
+  	height: 15vh; width: 100vw;
 
   	background-color: rgba(0,0,0,0.7);
   }
   #atp-content {
   	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
 
-  	height: 90vh; width: 100vw;
+  	height: 85vh; width: 100vw;
 
  	padding: 0; margin: 0;
     }
     #atp-player {
       flex-grow: 1;
 
-      display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
+      display: flex; flex-flow: row wrap;	align-items: center; justify-content: center;
 
       border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 
       background-color: rgba(0,0,0,0.3);
       }
       #atp-player > iframe {
-      	flex-grow: 1;
+      	/*flex-grow: 1;*/
       	width: 60vw;
+      	height: 80vh;
       }
     #atp-chatbox {
-      display: flex; flex-flow: column wrap; justify-content: stretch; align-items: center;
+      display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch;
 
       border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 
       background-color: rgba(0,0,0,0.3);
 
-      width: 15vw;
+      width: 25vw;
       }
       #atp-chatbox > iframe {
       	flex-grow: 1;
