@@ -1,2 +1,4 @@
 .idea
 my.cnf
+**.pyc
+/atp/extra_settings.py

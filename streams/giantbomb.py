@@ -11,7 +11,8 @@ def get_games(offset):
         'limit': 100,
         'offset': offset
     }
-    r = requests.get('http://www.giantbomb.com/api/games/', params=params)
+    headers = {'User-agent': 'ATP bot'}
+    r = requests.get('http://www.giantbomb.com/api/games/', headers=headers, params=params)
     if r.status_code == requests.codes.ok:
         return r.json()
     print r.text
