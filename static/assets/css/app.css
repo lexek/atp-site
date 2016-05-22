@@ -28,6 +28,11 @@ body {
   .el-flex-vertical {
   	flex-flow: column wrap;
   }
+
+.el-title {
+	font-size: 2em;
+
+}
 /*end*/
 
 /*helpers*/
@@ -50,12 +55,17 @@ body {
 
   	height: 15vh; width: 100vw;
 
-  	background-color: rgba(0,0,0,0.7);
+  	background-color: rgba(0,0,0,0.4);
+    }
+    #atp-header--logo {
+    	background-color: rgba(0,0,0,0.4);
     }
     #atp-header--title {
       flex-grow: 1;
 
-      display: flex; flex-flow: column wrap; justify-content: center; align-items: center;
+      display: flex; flex-flow: column wrap; justify-content: center; align-items: flex-start;
+
+      text-align: left;
     }
   #atp-content {
   	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
