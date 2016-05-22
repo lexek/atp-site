@@ -71,7 +71,7 @@ body {
   #atp-content {
   	display: flex; flex-flow: row wrap;	align-items: center; justify-content: center;
 
-  	height: 85vh; width: 100vw;
+  	height: 80vh; width: 100vw;
 
  	padding: 0; margin: 0;
     }
@@ -80,27 +80,29 @@ body {
 
       display: flex; flex-flow: row wrap;	align-items: center; justify-content: center;
 
-      border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 
-      background-color: rgba(0,0,0,0.3);
       }
       #atp-content--player > iframe {
       	/*flex-grow: 1;*/
       	width: 60vw;
       	height: 80vh;
+      	background-color: rgba(0,0,0,0.3);
+      	padding: 10px;
+        border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+
       }
     #atp-content--chatbox {
-      display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch; align-self: center;
-
-      border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
-
-      background-color: rgba(0,0,0,0.3);
+      display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch; align-self: stretch;
 
       width: 25vw;
-      padding: 15px;
+      
       }
       #atp-content--chatbox > iframe {
       	flex-grow: 1;
+      	padding: 10px;
+      	background-color: rgba(0,0,0,0.3);
+
+      	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
       }
   #atp-footer {
   	width: 100vw;
