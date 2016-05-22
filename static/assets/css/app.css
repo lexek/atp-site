@@ -59,8 +59,12 @@ body {
   	color: whitesmoke;
     }
     #atp-header--logo {
-    	background-color: rgba(0,0,0,0.4);
-    }
+      background-color: rgba(0,0,0,0.4);
+      flex-shrink: 1;
+      }
+      #atp-header--logo > img {
+      	width: 200px;
+      }
     #atp-header--title {
       flex-grow: 1;
 
@@ -69,7 +73,7 @@ body {
       text-align: left;
     }
   #atp-content {
-  	display: flex; flex-flow: row wrap;	align-items: center; justify-content: center;
+  	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
 
   	height: 80vh; width: 100vw;
 
