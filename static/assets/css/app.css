@@ -62,7 +62,7 @@ body {
       display: flex; flex-flow: row nowrap; justify-content: center; align-items: center;
 
       background-color: rgba(0,0,0,0.4);
-      padding: 0 20px 0 20px;
+      padding: 0 10px 0 10px;
       flex-shrink: 1;
       }
       #atp-header--logo > img {
@@ -71,7 +71,7 @@ body {
     #atp-header--title {
       flex-grow: 1;
 
-      display: flex; flex-flow: column wrap; justify-content: center; align-items: flex-start;
+      display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start;
 
       padding: 10px 20px 10px 20px;
       text-align: left;
@@ -88,27 +88,27 @@ body {
 
       display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
 
-
+      margin: 20px 0 20px 20px;
       }
       #atp-content--player > iframe {
-      	flex-grow: 1;
+      	/*flex-grow: 1;*/
       	width: 60vw;
       	/*height: 80vh;*/
-      	background-color: rgba(0,0,0,0.3);
+      	background-color: rgba(0,0,0,0.6);
       	padding: 10px;
         border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
-
       }
     #atp-content--chatbox {
       display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch; align-self: stretch;
 
       width: 25vw;
       
+      margin: 20px 20px 20px 0;
       }
       #atp-content--chatbox > iframe {
-      	flex-grow: 1;
+      	/*flex-grow: 1;*/
       	padding: 10px;
-      	background-color: rgba(0,0,0,0.3);
+      	background-color: rgba(0,0,0,0.6);
 
       	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
       }
