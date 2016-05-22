@@ -10,7 +10,7 @@ html, body {
 body {
     min-width: 800px;
     min-height: 600px;
-    background-image: url('/static/assets/img/bg/default.PNG');
+    background-image: url('/static/assets/img/bg/default.jpg');
     background-repeat:  no-repeat;
     background-position: center;
     background-size: cover;
@@ -56,6 +56,7 @@ body {
   	height: 15vh; width: 100vw;
 
   	background-color: rgba(0,0,0,0.4);
+  	color: whitesmoke;
     }
     #atp-header--logo {
     	background-color: rgba(0,0,0,0.4);
@@ -68,7 +69,7 @@ body {
       text-align: left;
     }
   #atp-content {
-  	display: flex; flex-flow: row wrap;	align-items: stretch; justify-content: center;
+  	display: flex; flex-flow: row wrap;	align-items: center; justify-content: center;
 
   	height: 85vh; width: 100vw;
 
@@ -89,13 +90,14 @@ body {
       	height: 80vh;
       }
     #atp-content--chatbox {
-      display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch;
+      display: flex; flex-flow: column wrap; justify-content: center; align-items: stretch; align-self: center;
 
       border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 
       background-color: rgba(0,0,0,0.3);
 
       width: 25vw;
+      padding: 15px;
       }
       #atp-content--chatbox > iframe {
       	flex-grow: 1;
