@@ -55,13 +55,13 @@ body {
 
   	height: 12vh; width: 100vw;
 
-  	background-color: rgba(0,0,0,0.4);
+  	background-color: rgba(0,0,0,0.3);
   	color: whitesmoke;
     }
     #atp-header--logo {
       display: flex; flex-flow: row nowrap; justify-content: center; align-items: center;
 
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0,0,0,0.3);
       padding: 0 10px 0 10px;
       flex-shrink: 1;
       }
@@ -91,7 +91,7 @@ body {
       margin: 20px 0 20px 20px;
       }
       #atp-content--player > iframe {
-      	/*flex-grow: 1;*/
+      	flex-grow: 1;
       	width: 60vw;
       	/*height: 80vh;*/
       	background-color: rgba(0,0,0,0.6);
@@ -106,7 +106,7 @@ body {
       margin: 20px 20px 20px 0;
       }
       #atp-content--chatbox > iframe {
-      	/*flex-grow: 1;*/
+      	flex-grow: 1;
       	padding: 10px;
       	background-color: rgba(0,0,0,0.6);
 
