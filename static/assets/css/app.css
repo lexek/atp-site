@@ -83,7 +83,7 @@ body {
 
  	padding: 0; margin: 0;
     }
-    [id*="#atp-content-"] {
+    [id*="atp-content-"] {
       margin-top: 40px !important;
     }
     #atp-content--player {
