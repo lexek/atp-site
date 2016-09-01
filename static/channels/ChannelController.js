@@ -14,22 +14,27 @@
     function ChannelController(channelService) {
         var self = this;
 
-        self.selectedChannel = null;
         self.selectedPlayer = null;
         self.channels = [];
+        self.flatChannels = [];
         self.selectChannel = selectChannel;
 
         channelService
             .loadAllChannels()
             .then(function (channels) {
                 self.channels = [].concat(channels);
-                self.selectedChannel = channels[0];
-                self.selectedPlayer = self.selectedChannel.players[0];
+                self.flatChannels = [];
+                $.each(self.channels, function(_, channel) {
+                    $.each(channel.players, function(_, player) {
+                        player.ch = channel;
+                        self.flatChannels.push(player);
+                    });
+                });
+                self.selectedPlayer = self.flatChannels[0];
                 console.log(self);
             });
 
-        function selectChannel(channel, player) {
-            self.selectedChannel = channel;
+        function selectChannel(player) {
             self.selectedPlayer = player;
         }
     }

@@ -1,15 +1,9 @@
-<!--iframe
-	ng-src="{{'http://www.twitch.tv/' + c.selectedPlayer.channel + '/embed'}}"
-    player-inner
-	frameborder="0"
-	scrolling="no"
-    flex="grow"
-	></iframe-->
-
 <iframe
     ng-src="{{'http://player.twitch.tv/?channel=' + c.selectedPlayer.channel}}"
-    player-inner
-	frameborder="0"
+    layout-fill
+	allowfullscreen
+	webkitallowfullscreen
 	scrolling="no"
-    flex="grow"
+	frameborder="0"
+	style="border: 0 none transparent;"
 ></iframe>

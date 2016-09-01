@@ -25,5 +25,5 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z
 .md-dark-theme.md-button,
 .md-dark-theme.material-icons,
 .md-dark-theme .md-caption {
-    color: rgba(255,255,255,0.87) !important;
+    color: rgba(255,255,255,0.87);
 }

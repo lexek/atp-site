@@ -8,7 +8,8 @@ def load_channels():
         for player in channel.players.all():
             players.append({
                 'provider': player.provider,
-                'channel': player.channel_name
+                'channel': player.channel_name,
+                'id': player.id
             })
         data.append({
             'name': channel.name,

@@ -45,6 +45,9 @@
                     if (h2 > h) {
                         w = w2;
                     }
+                    if (w2 > w) {
+                        h = h2;
+                    }
                     element.css({
                         "height": h + "px",
                         "width": w + "px"

@@ -9,14 +9,11 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="/static/bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/static/assets/app.css"/>
 
     <style type="text/css">
-        /**
-         * Hide when Angular is not yet loaded and initialized
-         */
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
             display: none !important;
         }
@@ -32,85 +29,85 @@
 <body ng-app="starterApp" layout="column" ng-controller="ChannelController as c" ng-cloak layout-fill>
 <md-toolbar flex="none" class="" md-theme="dark" style="background:none">
     <div class="md-toolbar-tools" layout="row">
-        <div flex="mone" layout="row">
-            <span flex="none" style="width: 108px; height: 64px; background-image: url('../static/assets/logo.png')">
-            </span>
-        </div>
+        <div flex="none" style="width: 108px; height: 64px; margin-top: 10px; background-image: url('../static/assets/logo.png')"></div>
         <div flex="grow" layout="row">
             <div flex layout="column">
                 <div class="md-title" flex="70">
                     <md-menu>
                         <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
-                            {{ c.selectedChannel.name }} : {{ c.selectedChannel.status }}
+                            {{ c.selectedPlayer.ch.name }} : {{ c.selectedPlayer.ch.status }}
                         </md-button>
-                        <md-menu-content layout="column">
-                            <div ng-repeat-start="channel in c.channels">
-                                <md-menu-item ng-repeat="player in channel.players" flex="grow">
-                                    <md-button ng-click="c.selectChannel(channel, player)">
-                                        <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
-                                        {{ channel.name }}
-                                    </md-button>
-                                </md-menu-item>
-                            </div>
-                            <md-menu-divider ng-repeat-end ng-if="!$last"></md-menu-divider>
+                        <md-menu-content layout="column" md-theme="deep-purple">
+                            <md-menu-item ng-repeat="player in c.flatChannels track by player.id" flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
+                                <md-button ng-click="c.selectChannel(player)">
+                                    <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
+                                    {{ player.ch.name }}: {{ player.provider }}
+                                </md-button>
+                            </md-menu-item>
                         </md-menu-content>
                     </md-menu>
                 </div>
                 <div class="md-caption" flex="30" style="padding: 0 14px">
-                    {{ c.selectedChannel.streamerName }} стримит
-                    {{ c.selectedChannel.game }} и его смотрит
-                    {{ c.selectedChannel.totalViewers }} человек
+                    {{ c.selectedPlayer.ch.streamerName }} стримит
+                    {{ c.selectedPlayer.ch.game }} и его смотрит
+                    {{ c.selectedPlayer.ch.totalViewers }} человек
                 </div>
             </div>
-            <!--md-button class="md-icon-button" aria-label="Edit" flex="none" ng-click="t.toggleEditingMode()">
-                <md-icon class="material-icons">edit</md-icon>
-            </md-button-->
         </div>
         <div flex="none" layout="row">
-            <md-button class="md-icon-button" href="https://www.youtube.com/user/ATPGAMESCHANNEL" aria="Youtube"
-                       target="_blank">
+            <md-button class="md-icon-button" href="https://www.youtube.com/user/ATPGAMESCHANNEL" aria="Youtube" target="_blank">
                 <md-icon md-svg-icon="youtube"></md-icon>
             </md-button>
             <md-button class="md-icon-button" href="https://twitter.com/atPlay_channel" aria="Twitter" target="_blank">
                 <md-icon md-svg-icon="twitter"></md-icon>
             </md-button>
-            <md-button class="md-icon-button" href="https://telegram.me/atplay" aria="Telegram"
-                       target="_blank">
+            <md-button class="md-icon-button" href="https://telegram.me/atplay" aria="Telegram" target="_blank">
                 <md-icon md-svg-icon="telegram"></md-icon>
             </md-button>
             <md-button class="md-icon-button" href="https://vk.com/atplay" aria="Vk" target="_blank">
                 <md-icon md-svg-icon="vk"></md-icon>
             </md-button>
             <span flex></span>
-            <!--md-button class="md-button" aria-label="account" flex="none">
-                {{ userName }} <md-icon class="material-icons">power_settings_new</md-icon>
-            </md-button-->
         </div>
     </div>
 </md-toolbar>
 
 <div id="content" layout="row" flex="grow" layout-align="space-between">
-    <div flex="none" ng-controller="PlayerController as p" class="md-whiteframe-10dp" layout="row" layout-align="middle" layout-margin>
+    <div
+        flex="none"
+        ng-controller="PlayerController as p"
+        layout="column"
+        layout-align="center"
+        layout-margin
+    >
         <div
             flex="none"
-            layout-align="center"
-            ng-include="'/static/channels/view/' + c.selectedPlayer.provider + '.html'"
-            style="overflow: hidden; background-color: black;"
             class="md-whiteframe-10dp"
-            ></div>
+            player-inner
+            style="margin: 0"
+        >
+            <div
+                flex="none"
+                ng-include="'/static/channels/view/' + c.selectedPlayer.provider + '.html'"
+                style="overflow: hidden; background-color: black;"
+                class="md-whiteframe-10dp"
+                layout-fill
+                ></div>
+        </div>
     </div>
     <div flex="grow" style="min-width:350px" layout="column" layout-margin class="md-whiteframe-10dp">
-        <iframe flex="grow" frameborder="0" scrolling="no" id="chat_embed"
+        <iframe layout-fill flex="grow" frameborder="0" scrolling="no" id="chat_embed"
                 src="https://atplay.ch:1337/chat.html"></iframe>
     </div>
 </div>
 
-<script src="/static/bower_components/jquery/dist/jquery.js"></script>
-<script src="/static/bower_components/angular/angular.js"></script>
-<script src="/static/bower_components/angular-animate/angular-animate.js"></script>
-<script src="/static/bower_components/angular-aria/angular-aria.js"></script>
-<script type="text/javascript" src="/static/bower_components/angular-material/angular-material.js"></script>
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
 <script src="/static/channels/Channels.js"></script>
 <script src="/static/channels/ChannelController.js"></script>
