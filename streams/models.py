@@ -43,6 +43,7 @@ class Player(models.Model):
     channel_name = models.CharField(max_length=64)
     channel = models.ForeignKey(Channel, related_name="players", unique=False)
     order = models.IntegerField()
+    online = models.BooleanField()
 
     def __unicode__(self):
         return self.provider + ': ' + self.channel_name
