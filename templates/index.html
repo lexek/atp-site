@@ -34,14 +34,15 @@
             <div flex layout="column">
                 <div class="md-title" flex="70">
                     <md-menu>
-                        <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)">
+                        <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)" ng-class="{'online': c.selectedPlayer.online}">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
                             {{ c.selectedPlayer.ch.name }} : {{ c.selectedPlayer.ch.status }}
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
                             <md-menu-item ng-repeat="player in c.flatChannels track by player.id" flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
-                                <md-button ng-click="c.selectChannel(player)">
-                                    <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
+                                <md-button ng-click="c.selectChannel(player)" ng-class="{'online': player.online}">
+                                    <md-icon md-svg-icon="{{ player.provider }}">
+                                    </md-icon>
                                     {{ player.ch.name }}: {{ player.provider }}
                                 </md-button>
                             </md-menu-item>

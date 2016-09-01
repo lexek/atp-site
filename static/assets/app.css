@@ -27,3 +27,16 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z
 .md-dark-theme .md-caption {
     color: rgba(255,255,255,0.87);
 }
+
+.online md-icon::before {
+    position: absolute;
+    content: url('/static/assets/live.png');
+    left: 2px;
+    bottom: 1px;
+}
+
+md-menu-item .online md-icon::before {
+    left: 13px;
+    bottom: -6px;
+}
+

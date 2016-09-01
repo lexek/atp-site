@@ -9,6 +9,7 @@ def load_channels():
             players.append({
                 'provider': player.provider,
                 'channel': player.channel_name,
+                'online': player.online,
                 'id': player.id
             })
         data.append({
