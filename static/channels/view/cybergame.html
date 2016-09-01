@@ -1,4 +1,4 @@
-<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="cyberplayer_jw" flex="none" player-inner>
+<!--object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="cyberplayer_jw" flex="none" player-inner>
 	<param name="movie" value="http://cybergame.tv/players/cyberplayer26.swf?channel=atplay" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#000000" />
@@ -18,4 +18,11 @@
         flex="none"
         player-inner
 		></embed>
-</object>
+</object-->
+<iframe
+    ng-src="{{'http://api.cybergame.tv/p/embed.php?type=embed&w=100pc&h=100pc&auto=true&advforced=true&c=' + c.selectedPlayer.channel}}"
+    player-inner
+    frameborder="0"
+    scrolling="no"
+    flex="grow"
+></iframe>
