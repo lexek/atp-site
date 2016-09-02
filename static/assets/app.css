@@ -17,7 +17,7 @@ background:
   ;
 }
 
-#content {
+#content, #toolbar {
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2NkYGCQBOLnQAwGjDAGNgGwSgwVAE+2AgXahLM7AAAAAElFTkSuQmCC) repeat; 
 }
 
@@ -38,5 +38,13 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z
 md-menu-item .online md-icon::before {
     left: 13px;
     bottom: -6px;
+}
+
+md-badge{
+  margin: 0 0 0 8px;
+  background-color: #F44336;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 

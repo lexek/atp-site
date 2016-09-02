@@ -27,7 +27,7 @@
 
 {%verbatim%}
 <body ng-app="starterApp" layout="column" ng-controller="ChannelController as c" ng-cloak layout-fill>
-<md-toolbar flex="none" class="" md-theme="dark" style="background:none">
+<md-toolbar flex="none" class="" md-theme="dark" id="toolbar">
     <div class="md-toolbar-tools" layout="row">
         <div flex="none" style="width: 108px; height: 64px; margin-top: 10px; background-image: url('../static/assets/logo.png')"></div>
         <div flex="grow" layout="row">
@@ -40,10 +40,11 @@
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
                             <md-menu-item ng-repeat="player in c.flatChannels track by player.id" flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
-                                <md-button ng-click="c.selectChannel(player)" ng-class="{'online': player.online}">
+                                <md-button ng-click="c.selectChannel(player)">
                                     <md-icon md-svg-icon="{{ player.provider }}">
                                     </md-icon>
                                     {{ player.ch.name }}: {{ player.provider }}
+                                    <md-badge ng-if="player.online" style="float: right; margin-top: 6px; margin-left: 10px; line-height: 20px;">LIVE</md-badge>
                                 </md-button>
                             </md-menu-item>
                         </md-menu-content>
