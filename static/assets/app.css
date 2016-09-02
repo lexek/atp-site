@@ -7,44 +7,38 @@ html, body {
     overflow-y: hidden !important;
 }
 
+html {
+    min-width: 800px;
+}
+
 body {
     min-width: 800px;
     min-height: 600px;
-background: 
-  linear-gradient(45deg,  transparent 0%, transparent 57%, #423246 100%),
-  linear-gradient(-45deg, #8f5046 0%,  #A14436 0.3%, #4C2556 112%,  transparent 11% ),
-  linear-gradient(-90deg, #A14436 100%, #A14436 65%, transparent 20% )
-  ;
+    background: linear-gradient(45deg, transparent 0%, transparent 57%, #423246 100%),
+    linear-gradient(-45deg, #8f5046 0%, #A14436 0.3%, #4C2556 112%, transparent 11%),
+    linear-gradient(-90deg, #A14436 100%, #A14436 65%, transparent 20%);
 }
 
 #content, #toolbar {
-background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2NkYGCQBOLnQAwGjDAGNgGwSgwVAE+2AgXahLM7AAAAAElFTkSuQmCC) repeat; 
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2NkYGCQBOLnQAwGjDAGNgGwSgwVAE+2AgXahLM7AAAAAElFTkSuQmCC) repeat;
 }
 
 .md-dark-theme.md-icon,
 .md-dark-theme.md-button,
 .md-dark-theme.material-icons,
 .md-dark-theme .md-caption {
-    color: rgba(255,255,255,0.87);
+    color: rgba(255, 255, 255, 0.87);
 }
 
-.online md-icon::before {
-    position: absolute;
-    content: url('/static/assets/live.png');
-    left: 2px;
-    bottom: 1px;
+md-badge {
+    background-color: #F44336;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 16px;
 }
 
-md-menu-item .online md-icon::before {
-    left: 13px;
-    bottom: -6px;
+md-menu-item md-badge {
+    margin: 9px 0 0 10px;
 }
-
-md-badge{
-  margin: 0 0 0 8px;
-  background-color: #F44336;
-  color: white;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-

@@ -48,10 +48,16 @@
                     if (w2 > w) {
                         h = h2;
                     }
-                    element.css({
-                        "height": h + "px",
-                        "width": w + "px"
-                    });
+                    if ("toolbarW" in attr) {
+                        element.css({
+                            "width": (w - 108) + "px"
+                        });
+                    } else {
+                        element.css({
+                            "height": h + "px",
+                            "width": w + "px"
+                        });
+                    }
                 }, true);
 
                 w.bind('resize', function () {

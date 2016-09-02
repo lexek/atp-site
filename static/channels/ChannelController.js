@@ -18,6 +18,7 @@
         self.channels = [];
         self.flatChannels = [];
         self.selectChannel = selectChannel;
+        self.chatPopup = chatPopup;
 
         channelService
             .loadAllChannels()
@@ -36,6 +37,10 @@
 
         function selectChannel(player) {
             self.selectedPlayer = player;
+        }
+
+        function chatPopup() {
+            window.open('https://atplay.ch:1337/chat.html', 'chat', 'width=300,height=400');
         }
     }
 

@@ -30,21 +30,21 @@
 <md-toolbar flex="none" class="" md-theme="dark" id="toolbar">
     <div class="md-toolbar-tools" layout="row">
         <div flex="none" style="width: 108px; height: 64px; margin-top: 10px; background-image: url('../static/assets/logo.png')"></div>
-        <div flex="grow" layout="row">
+        <div flex="none" layout="row" player-inner toolbar-w>
             <div flex layout="column">
                 <div class="md-title" flex="70">
                     <md-menu>
                         <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)" ng-class="{'online': c.selectedPlayer.online}">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
+                            <md-badge ng-if="c.selectedPlayer.online">LIVE</md-badge>
                             {{ c.selectedPlayer.ch.name }} : {{ c.selectedPlayer.ch.status }}
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
                             <md-menu-item ng-repeat="player in c.flatChannels track by player.id" flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
                                 <md-button ng-click="c.selectChannel(player)">
-                                    <md-icon md-svg-icon="{{ player.provider }}">
-                                    </md-icon>
+                                    <md-badge ng-if="player.online" style="float: right;">LIVE</md-badge>
+                                    <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
                                     {{ player.ch.name }}: {{ player.provider }}
-                                    <md-badge ng-if="player.online" style="float: right; margin-top: 6px; margin-left: 10px; line-height: 20px;">LIVE</md-badge>
                                 </md-button>
                             </md-menu-item>
                         </md-menu-content>
@@ -57,25 +57,32 @@
                 </div>
             </div>
         </div>
-        <div flex="none" layout="row">
-            <md-button class="md-icon-button" href="https://www.youtube.com/user/ATPGAMESCHANNEL" aria="Youtube" target="_blank">
-                <md-icon md-svg-icon="youtube"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" href="https://twitter.com/atPlay_channel" aria="Twitter" target="_blank">
-                <md-icon md-svg-icon="twitter"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" href="https://telegram.me/atplay" aria="Telegram" target="_blank">
-                <md-icon md-svg-icon="telegram"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" href="https://vk.com/atplay" aria="Vk" target="_blank">
-                <md-icon md-svg-icon="vk"></md-icon>
-            </md-button>
-            <span flex></span>
+        <div flex="grow" layout="row">
+            <div layout-fill layout="row">
+                <div flex="none">
+                    <md-button class="md-icon-button" href="https://www.youtube.com/user/ATPGAMESCHANNEL" aria="Youtube" target="_blank">
+                        <md-icon md-svg-icon="youtube"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" href="https://twitter.com/atPlay_channel" aria="Twitter" target="_blank">
+                        <md-icon md-svg-icon="twitter"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" href="https://telegram.me/atplay" aria="Telegram" target="_blank">
+                        <md-icon md-svg-icon="telegram"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" href="https://vk.com/atplay" aria="Vk" target="_blank">
+                        <md-icon md-svg-icon="vk"></md-icon>
+                    </md-button>
+                </div>
+                <span flex="grow"></span>
+                <md-button flex="none" class="md-icon-button" aria="Chat popout" ng-click="c.chatPopup()">
+                    <md-icon md-svg-icon="chat" style="fill: rgba(255, 255, 255, 0.87);"></md-icon>
+                </md-button>
+            </div>
         </div>
     </div>
 </md-toolbar>
 
-<div id="content" layout="row" flex="grow" layout-align="space-between">
+<div id="content" layout="row" flex="grow" layout-align="space-between" style="background: white">
     <div
         flex="none"
         ng-controller="PlayerController as p"
@@ -127,7 +134,8 @@
                 .icon("youtube", "/static/assets/svg/youtube.svg", 128)
                 .icon("vk", "/static/assets/svg/vk.svg", 980)
                 .icon("twitter", "/static/assets/svg/twitter.svg", 512)
-                .icon("telegram", "/static/assets/svg/telegram.svg", 512);
+                .icon("telegram", "/static/assets/svg/telegram.svg", 512)
+                .icon("chat", "/static/assets/svg/chat.svg", 48);
 
             $mdThemingProvider.definePalette('dark', {
                 "50": "#c1c5da",
