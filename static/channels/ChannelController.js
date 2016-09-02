@@ -40,7 +40,7 @@
         }
 
         function chatPopup() {
-            window.open('https://atplay.ch:1337/chat.html', 'chat', 'width=300,height=400');
+            window.open('https://atplay.ch:1337/chat.html', 'chat', 'width=400,height=600');
         }
     }
 
