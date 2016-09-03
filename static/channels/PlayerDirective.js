@@ -38,7 +38,7 @@
                 }, function (newValue, oldValue) {
                     scope.windowHeight = newValue.h;
                     scope.windowWidth = newValue.w;
-                    var w = scope.windowWidth - 382;
+                    var w = scope.windowWidth - 432;
                     var h = scope.windowHeight - 85;
                     var h2 = Math.round(w * 0.5625);
                     var w2 = Math.round(h / 0.5625);
