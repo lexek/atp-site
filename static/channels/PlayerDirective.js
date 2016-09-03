@@ -40,8 +40,8 @@
                     scope.windowWidth = newValue.w;
                     var w = scope.windowWidth - 382;
                     var h = scope.windowHeight - 85;
-                    var h2 = Math.round(w * 0.596);
-                    var w2 = Math.round(h / 0.596);
+                    var h2 = Math.round(w * 0.5625);
+                    var w2 = Math.round(h / 0.5625);
                     if (h2 > h) {
                         w = w2;
                     }
