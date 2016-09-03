@@ -42,3 +42,8 @@ md-badge {
 md-menu-item md-badge {
     margin: 9px 0 0 10px;
 }
+
+.stream-title {
+    font-size: 24px;
+    vertical-align: middle;
+}

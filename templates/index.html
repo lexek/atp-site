@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>ATPlay.ch</title>
 
@@ -36,8 +36,8 @@
                     <md-menu>
                         <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)" ng-class="{'online': c.selectedPlayer.online}">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
-                            <md-badge ng-if="c.selectedPlayer.online">LIVE</md-badge>
-                            {{ c.selectedPlayer.ch.name }} : {{ c.selectedPlayer.ch.status }}
+                            <md-badge ng-if="c.selectedPlayer.online" style="margin-right: 5px">LIVE</md-badge>
+                            <span class="stream-title">{{ c.selectedPlayer.ch.status }}</span>
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
                             <md-menu-item ng-repeat="player in c.flatChannels track by player.id" flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
