@@ -51,6 +51,7 @@
         function activate() {
             processState(channelService.getInitialState());
             self.selectedPlayer = self.players[0];
+            updateState();
             $interval(updateState, 5000);
         }
     }
