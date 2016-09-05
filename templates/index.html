@@ -37,23 +37,28 @@
                         <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)" ng-class="{'online': c.selectedPlayer.online}">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
                             <md-badge ng-if="c.selectedPlayer.online" style="margin-right: 5px; vertical-align: middle;">LIVE</md-badge>
-                            <span class="stream-title">{{ c.selectedPlayer.ch.status }}</span>
+                            <span class="stream-title">{{ c.channel.status }}</span>
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
-                            <md-menu-item ng-repeat="player in c.flatChannels track by player.id" flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
+                            <md-menu-item ng-repeat="player in c.players | orderBy:'player.id' track by player.id " flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
                                 <md-button ng-click="c.selectChannel(player)">
                                     <md-badge ng-if="player.online" style="float: right;">LIVE</md-badge>
                                     <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
-                                    {{ player.ch.name }}: {{ player.provider }}
+                                    {{ player.provider }}
                                 </md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
                 </div>
                 <div class="md-caption" flex="30" style="padding: 0 14px">
-                    {{ c.selectedPlayer.ch.streamerName }} стримит
-                    {{ c.selectedPlayer.ch.game }} и его смотрит
-                    {{ c.selectedPlayer.ch.totalViewers }} человек
+                    <span ng-if="!c.anyOnline()">
+                        нострим
+                    </span>
+                    <span ng-if="c.anyOnline()">
+                        {{ c.channel.streamer || "Некий стример" }} стримит
+                        {{ c.channel.game || "что-то" }} и его смотрит
+                        {{ c.channel.viewers }} человек
+                    </span>
                 </div>
             </div>
         </div>
@@ -141,7 +146,8 @@
                 .icon("vk", "/static/assets/svg/vk.svg", 980)
                 .icon("twitter", "/static/assets/svg/twitter.svg", 512)
                 .icon("telegram", "/static/assets/svg/telegram.svg", 512)
-                .icon("chat", "/static/assets/svg/chat.svg", 48);
+                .icon("chat", "/static/assets/svg/chat.svg", 48)
+                .icon("goodgame", "/static/assets/svg/goodgame.svg", 170);
 
             $mdThemingProvider.definePalette('dark', {
                 "50": "#c1c5da",

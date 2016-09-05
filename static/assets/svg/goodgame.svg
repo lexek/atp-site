@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="172.52437"
+   height="170.72749"
+   viewBox="0 0 172.52437 170.7275"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="goodgame.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="56.223482"
+     inkscape:cy="66.640712"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer2"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-2"
+     inkscape:window-maximized="1"
+     units="px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-270.70029,-299.17977)">
+    <g
+       style="fill:#52709c;fill-rule:evenodd;stroke:none;stroke-width:1"
+       id="new-navigation-user-+-forum"
+       sketch:type="MSArtboardGroup"
+       transform="matrix(5.173913,0,0,5.173913,-91.097102,-383.26648)">
+      <g
+         id="top-bars"
+         sketch:type="MSLayerGroup"
+         transform="translate(-3,138)">
+        <g
+           inkscape:groupmode="layer"
+           id="layer2"
+           inkscape:label="Layer 2">
+          <g
+             transform="matrix(0.86909971,0,0,0.86909971,11.698331,-10.0306)"
+             sketch:type="MSLayerGroup"
+             id="top-bars-9"
+             style="fill:#52709c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1">
+            <g
+               sketch:type="MSShapeGroup"
+               id="nav-1"
+               style="fill:#52709c;fill-opacity:1">
+              <path
+                 style="fill:#52709c;fill-opacity:1"
+                 d="m 89.648034,30.21693 c 0,0 5.707907,-0.02138 9.23872,0 -0.902603,1.105222 -3.138985,3.915408 -8.667927,3.915408 -5.875627,0 -11.195146,-4.499556 -11.195146,-10.610868 0,-6.48328 5.285434,-10.715642 11.317354,-10.712838 6.029382,0.0028 9.006812,3.97095 9.700535,5.356332 1.88825,-0.02558 3.5941,-0.0154 8.31472,0 1.9e-4,-4.667934 -7.26543,-13.6407676 -18.137463,-13.6407676 -10.78192,0 -19.767883,7.9599456 -19.767883,18.6755896 0,12.427616 11.278914,19.292152 19.102262,19.292152 5.134938,0 10.099074,-1.69813 12.798184,-4.240422 0.004,2.104268 0,4.240422 0,4.240422 l 6.4669,0 0,-18.524208 -19.170256,0 0,6.2492 0,0 z"
+                 id="path5540"
+                 inkscape:connector-curvature="0" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

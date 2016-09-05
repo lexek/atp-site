@@ -3,7 +3,7 @@
     angular
         .module('channels')
         .controller('ChannelController', [
-            'channelService', '$log', '$q',
+            'channelService', '$interval',
             ChannelController
         ])
         .controller("PlayerController", [
@@ -11,36 +11,47 @@
             PlayerController
         ]);
 
-    function ChannelController(channelService) {
+    function ChannelController(channelService, $interval) {
         var self = this;
 
+        self.channel = {};
         self.selectedPlayer = null;
-        self.channels = [];
-        self.flatChannels = [];
+        self.players = [];
         self.selectChannel = selectChannel;
         self.chatPopup = chatPopup;
+        self.anyOnline = anyOnline;
 
-        channelService
-            .loadAllChannels()
-            .then(function (channels) {
-                self.channels = [].concat(channels);
-                self.flatChannels = [];
-                $.each(self.channels, function(_, channel) {
-                    $.each(channel.players, function(_, player) {
-                        player.ch = channel;
-                        self.flatChannels.push(player);
-                    });
-                });
-                self.selectedPlayer = self.flatChannels[0];
-                console.log(self);
-            });
+        activate();
+
+        function updateState() {
+            //todo: update selectedPlayer
+            channelService.fetchState().then(processState);
+        }
+
+        function processState(data) {
+            self.channel = data.channel;
+            self.players = data.players;
+            console.log(self);
+        }
 
         function selectChannel(player) {
             self.selectedPlayer = player;
         }
 
+        function anyOnline() {
+            return self.players.some(function(channel) {
+                return channel.online;
+            });
+        }
+
         function chatPopup() {
             window.open('https://atplay.ch:1337/chat.html', 'chat', 'width=400,height=600');
+        }
+
+        function activate() {
+            processState(channelService.getInitialState());
+            self.selectedPlayer = self.players[0];
+            $interval(updateState, 5000);
         }
     }
 
