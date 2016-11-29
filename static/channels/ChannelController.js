@@ -24,14 +24,20 @@
         activate();
 
         function updateState() {
-            //todo: update selectedPlayer
             channelService.fetchState().then(processState);
         }
 
         function processState(data) {
+            var anyOnlineBefore = anyOnline();
             self.channel = data.channel;
             self.players = data.players;
-            console.log(self);
+            self.selectedPlayer = self.players.find(function findPlayer(e) {
+                return e.id === self.selectedPlayer.id;
+            });
+            if (anyOnline() && !anyOnlineBefore) {
+                console.log("notify");
+                //todo: notify
+            }
         }
 
         function selectChannel(player) {
