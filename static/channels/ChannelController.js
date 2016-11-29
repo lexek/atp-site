@@ -12,14 +12,14 @@
         ]);
 
     function ChannelController(channelService, $interval) {
-        var self = this;
+        var vm = this;
 
-        self.channel = {};
-        self.selectedPlayer = null;
-        self.players = [];
-        self.selectChannel = selectChannel;
-        self.chatPopup = chatPopup;
-        self.anyOnline = anyOnline;
+        vm.channel = {};
+        vm.selectedPlayer = null;
+        vm.players = [];
+        vm.selectChannel = selectChannel;
+        vm.chatPopup = chatPopup;
+        vm.anyOnline = anyOnline;
 
         activate();
 
@@ -29,11 +29,11 @@
 
         function processState(data) {
             var anyOnlineBefore = anyOnline();
-            self.channel = data.channel;
-            self.players = data.players;
-            if (self.selectedPlayer) {
-                self.selectedPlayer = self.players.find(function findPlayer(e) {
-                    return e.id === self.selectedPlayer.id;
+            vm.channel = data.channel;
+            vm.players = data.players;
+            if (vm.selectedPlayer) {
+                vm.selectedPlayer = vm.players.find(function findPlayer(e) {
+                    return e.id === vm.selectedPlayer.id;
                 });
             }
             if (anyOnline() && !anyOnlineBefore) {
@@ -43,11 +43,11 @@
         }
 
         function selectChannel(player) {
-            self.selectedPlayer = player;
+            vm.selectedPlayer = player;
         }
 
         function anyOnline() {
-            return self.players.some(function(channel) {
+            return vm.players.some(function(channel) {
                 return channel.online;
             });
         }
@@ -58,7 +58,7 @@
 
         function activate() {
             processState(channelService.getInitialState());
-            self.selectedPlayer = self.players[0];
+            vm.selectedPlayer = vm.players[0];
             updateState();
             $interval(updateState, 5000);
         }
