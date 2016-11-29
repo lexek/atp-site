@@ -31,9 +31,11 @@
             var anyOnlineBefore = anyOnline();
             self.channel = data.channel;
             self.players = data.players;
-            self.selectedPlayer = self.players.find(function findPlayer(e) {
-                return e.id === self.selectedPlayer.id;
-            });
+            if (self.selectedPlayer) {
+                self.selectedPlayer = self.players.find(function findPlayer(e) {
+                    return e.id === self.selectedPlayer.id;
+                });
+            }
             if (anyOnline() && !anyOnlineBefore) {
                 console.log("notify");
                 //todo: notify
