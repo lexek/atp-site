@@ -20,6 +20,8 @@
         vm.selectChannel = selectChannel;
         vm.chatPopup = chatPopup;
         vm.anyOnline = anyOnline;
+        vm.subscribe = subscribe;
+        vm.subscribed = false;
 
         activate();
 
@@ -61,6 +63,24 @@
             vm.selectedPlayer = vm.players[0];
             updateState();
             $interval(updateState, 5000);
+
+            OneSignal.push(function() {
+                OneSignal.on('subscriptionChange', function (isSubscribed) {
+                    vm.subscribed = isSubscribed;
+                });
+            });
+
+            OneSignal.isPushNotificationsEnabled().then(function(isSubscribed) {
+                vm.subscribed = isSubscribed;
+            });
+        }
+
+        function subscribe() {
+            OneSignal.push(function() {
+                OneSignal.registerForPushNotifications({
+                    modalPrompt: true
+                });
+            });
         }
     }
 
