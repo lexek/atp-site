@@ -12,7 +12,14 @@
                     url: "http://atplay.ch:7777/new"
                 }).then(function(response) {
                     if (response.status === 200) {
-                        return response.data;
+                        var data = response.data;
+                        var status = data.channel.status;
+                        if (status.endsWith("@Play") && (status.indexOf("|") !== -1)) {
+                            var temp = status.substring(0, status.length - 5).split("|");
+                            data.channel.status = temp[0].trim();
+                            data.channel.streamer = temp[1].trim();
+                        }
+                        return data;
                     } else {
                         $q.reject(response);
                     }
