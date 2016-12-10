@@ -8,9 +8,8 @@ html, body {
 }
 
 body {
-    background: linear-gradient(45deg, transparent 0%, transparent 57%, #423246 100%),
-    linear-gradient(-45deg, #8f5046 0%, #A14436 0.3%, #4C2556 112%, transparent 11%),
-    linear-gradient(-90deg, #A14436 100%, #A14436 65%, transparent 20%);
+    background: #4261cf;
+    background: linear-gradient(45deg, #15152a 0%, #34447f 100%);
 }
 
 #content, #toolbar {
