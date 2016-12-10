@@ -16,7 +16,8 @@
             0: ngAudio.load("/static/assets/sound/toasty.mp3"),
             1: ngAudio.load("/static/assets/sound/call.mp3"),
             2: ngAudio.load("/static/assets/sound/alert.mp3"),
-            3: ngAudio.load("/static/assets/sound/secret.mp3")
+            3: ngAudio.load("/static/assets/sound/secret.mp3"),
+            4: ngAudio.load("/static/assets/sound/gta.mp3")
         };
 
         vm.channel = {};
@@ -55,8 +56,10 @@
                 type = 3
             } else if (rand >= 950 ){
                 type = 0;
-            } else if (rand >= 840 && rand <= 890){
+            } else if (rand >= 840 && rand <= 890) {
                 type = 1;
+            } else if (rand >= 340 && rand <= 490) {
+                type = 4;
             } else {
                 type = 2;
             }
