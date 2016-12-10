@@ -1,9 +1,8 @@
 (function () {
-
     angular
         .module('channels')
         .controller('ChannelController', [
-            'channelService', '$interval',
+            'channelService', '$interval', 'ngAudio',
             ChannelController
         ])
         .controller("PlayerController", [
@@ -11,8 +10,14 @@
             PlayerController
         ]);
 
-    function ChannelController(channelService, $interval) {
+    function ChannelController(channelService, $interval, ngAudio) {
         var vm = this;
+        var alerts = {
+            0: ngAudio.load("/static/assets/sound/toasty.mp3"),
+            1: ngAudio.load("/static/assets/sound/call.mp3"),
+            2: ngAudio.load("/static/assets/sound/alert.mp3"),
+            3: ngAudio.load("/static/assets/sound/secret.mp3")
+        };
 
         vm.channel = {};
         vm.selectedPlayer = null;
@@ -39,9 +44,28 @@
                 });
             }
             if (anyOnline() && !anyOnlineBefore) {
-                console.log("notify");
-                //todo: notify
+                notify();
             }
+        }
+
+        function notify() {
+            var type = 0;
+            var rand = Math.round(Math.random() * 1000);
+            if (rand >= 990) {
+                type = 3
+            } else if (rand >= 950 ){
+                type = 0;
+            } else if (rand >= 840 && rand <= 890){
+                type = 1;
+            } else {
+                type = 2;
+            }
+
+            var alert = alerts[type];
+            console.log(alert);
+            alert.volume = .5;
+            alert.currentTime = 0;
+            alert.play();
         }
 
         function selectChannel(player) {
