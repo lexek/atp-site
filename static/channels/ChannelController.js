@@ -12,6 +12,7 @@
 
     function ChannelController(channelService, $interval, ngAudio) {
         var vm = this;
+        var checked = false;
         var alerts = {
             0: ngAudio.load("/static/assets/sound/toasty.mp3"),
             1: ngAudio.load("/static/assets/sound/call.mp3"),
@@ -32,7 +33,10 @@
         activate();
 
         function updateState() {
-            channelService.fetchState().then(processState);
+            channelService.fetchState().then(function(data) {
+                checked = true;
+                return data;
+            }).then(processState);
         }
 
         function processState(data) {
@@ -44,7 +48,7 @@
                     return e.id === vm.selectedPlayer.id;
                 });
             }
-            if (anyOnline() && !anyOnlineBefore) {
+            if (checked && anyOnline() && !anyOnlineBefore) {
                 notify();
             }
         }
