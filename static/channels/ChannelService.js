@@ -5,6 +5,8 @@
         .service("channelService", ["$q", "$http", ChannelService]);
 
     function ChannelService($q, $http) {
+        var firstFetch = true;
+
         return {
             fetchState: function() {
                 return $http({
@@ -19,6 +21,8 @@
                             data.channel.status = temp[0].trim();
                             data.channel.streamer = temp[1].trim();
                         }
+                        data.update = !firstFetch;
+                        firstFetch = false;
                         return data;
                     } else {
                         $q.reject(response);
@@ -27,6 +31,7 @@
             },
             getInitialState: function () {
                 return {
+                    update: false,
                     channel: {
                         status: "ATPlay",
                         game: null,
