@@ -1,23 +1,26 @@
 (function () {
+    'use strict';
+
     angular
         .module('channels')
         .controller('ChannelController', [
             'channelService', '$interval', 'ngAudio',
             ChannelController
         ])
-        .controller("PlayerController", [
-            "$element", "$scope",
+        .controller('PlayerController', [
+            '$element', '$scope',
             PlayerController
-        ]);
+        ])
+        .run(['$mdDialog', initRules]);
 
     function ChannelController(channelService, $interval, ngAudio) {
         var vm = this;
         var alerts = {
-            0: ngAudio.load("/static/assets/sound/toasty.mp3"),
-            1: ngAudio.load("/static/assets/sound/call.mp3"),
-            2: ngAudio.load("/static/assets/sound/alert.mp3"),
-            3: ngAudio.load("/static/assets/sound/secret.mp3"),
-            4: ngAudio.load("/static/assets/sound/gta.mp3")
+            0: ngAudio.load('/static/assets/sound/toasty.mp3'),
+            1: ngAudio.load('/static/assets/sound/call.mp3'),
+            2: ngAudio.load('/static/assets/sound/alert.mp3'),
+            3: ngAudio.load('/static/assets/sound/secret.mp3'),
+            4: ngAudio.load('/static/assets/sound/gta.mp3')
         };
 
         vm.channel = {};
@@ -53,8 +56,8 @@
             var type = 0;
             var rand = Math.round(Math.random() * 1000);
             if (rand >= 990) {
-                type = 3
-            } else if (rand >= 950 ){
+                type = 3;
+            } else if (rand >= 950) {
                 type = 0;
             } else if (rand >= 840 && rand <= 890) {
                 type = 1;
@@ -66,7 +69,7 @@
 
             var alert = alerts[type];
             console.log(alert);
-            alert.volume = .5;
+            alert.volume = 0.5;
             alert.currentTime = 0;
             alert.play();
         }
@@ -113,16 +116,15 @@
 
     function PlayerController(element, scope) {
         var self = this;
-        self.h = element.width() + "px";
-        self.w = element.height() + "px";
+        self.h = element.width() + 'px';
+        self.w = element.height() + 'px';
 
-        scope.$watchCollection("genStyle()", function (newValue, oldValue) {
-            self.w = element.width() + "px";
-            self.h = element.height() + "px";
-            console.log(newValue)
+        scope.$watchCollection('genStyle()', function () {
+            self.w = element.width() + 'px';
+            self.h = element.height() + 'px';
         });
 
-        angular.element(window).bind("resize", function() {
+        angular.element(window).bind('resize', function() {
             self.w = element.width();
             self.h = element.height();
             scope.$apply();
@@ -131,9 +133,27 @@
         var w = $(window);
         function genStyle() {
             return {
-                "width": w.width(),
-                "height": w.height()
-            }
+                'width': w.width(),
+                'height': w.height()
+            };
+        }
+    }
+
+    function DialogController($scope, $mdDialog) {
+        $scope.accept = function() {
+            localStorage.setItem('ATP_RULES', 'OK');
+            $mdDialog.hide();
+        };
+    }
+
+    function initRules($mdDialog) {
+        if (!localStorage || localStorage.getItem('ATP_RULES') !== 'OK') {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: '/static/channels/view/rules.html',
+                parent: angular.element(document.body),
+                escapeToClose: false
+            });
         }
     }
 })();
