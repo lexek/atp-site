@@ -12,3 +12,7 @@ def index(request):
         'preloaded_channels': json.dumps(load_channels())
     })
     return render(request, "index.html", context=c)
+
+
+def editor(request):
+    return render(request, "editor.html")

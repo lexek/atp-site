@@ -1,0 +1,15 @@
+{
+  "lang": "en",
+  "background_color": "#000000",
+  "name": "ATPlay.ch",
+  "short_name": "ATPlay.ch",
+  "display": "standalone",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "/static/assets/app-logo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}

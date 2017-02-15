@@ -30,7 +30,12 @@
         vm.chatPopup = chatPopup;
         vm.anyOnline = anyOnline;
         vm.subscribe = subscribe;
+        vm.saveBg = saveBg;
         vm.subscribed = false;
+        vm.mobile = document.IS_MOBILE;
+        vm.bg = '#34447f';
+        vm.tempBg = null;
+        vm.wideScreen = true;
 
         activate();
 
@@ -68,7 +73,6 @@
             }
 
             var alert = alerts[type];
-            console.log(alert);
             alert.volume = 0.5;
             alert.currentTime = 0;
             alert.play();
@@ -88,21 +92,36 @@
             window.open('https://atplay.ch:1337/chat.html', 'chat', 'width=400,height=600');
         }
 
+        function saveBg() {
+            if (localStorage && vm.tempBg) {
+                localStorage.setItem('ATP_COLOR', vm.tempBg);
+                vm.bg = vm.tempBg;
+            }
+        }
+
         function activate() {
             processState(channelService.getInitialState());
             vm.selectedPlayer = vm.players[0];
             updateState();
             $interval(updateState, 5000);
 
-            OneSignal.push(function() {
-                OneSignal.on('subscriptionChange', function (isSubscribed) {
+            if (OneSignal) {
+                OneSignal.push(function () {
+                    OneSignal.on('subscriptionChange', function (isSubscribed) {
+                        vm.subscribed = isSubscribed;
+                    });
+                });
+
+                OneSignal.isPushNotificationsEnabled().then(function (isSubscribed) {
                     vm.subscribed = isSubscribed;
                 });
-            });
+            }
 
-            OneSignal.isPushNotificationsEnabled().then(function(isSubscribed) {
-                vm.subscribed = isSubscribed;
-            });
+            if (localStorage || localStorage.getItem('ATP_COLOR')) {
+                vm.bg = localStorage.getItem('ATP_COLOR');
+            }
+
+            vm.tempBg = vm.bg;
         }
 
         function subscribe() {

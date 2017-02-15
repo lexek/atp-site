@@ -41,3 +41,20 @@ md-menu-item md-badge {
     vertical-align: middle;
     text-transform: none;
 }
+
+#chat {
+    min-width: 400px;
+    min-height: 200px;
+}
+
+.mobile #chat {
+    min-width: 200px
+}
+
+.mobile #right-toolbar {
+    display: none;
+}
+
+.mobile #left-toolbar {
+    flex: 1;
+}

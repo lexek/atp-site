@@ -8,9 +8,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="icon" type="image/png" href="/static/assets/favicon.png" />
+
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/static/vendor/mdColorPicker.css">
     <link rel="stylesheet" href="/static/assets/app.css"/>
 
     <style type="text/css">
@@ -20,19 +24,28 @@
     </style>
 </head>
 
-{%verbatim%}
-<body ng-app="starterApp" layout="column" ng-controller="ChannelController as c" ng-cloak layout-fill>
+<span style="display: none">{%verbatim%}</span>
+<body
+    ng-app="starterApp"
+    layout="column"
+    ng-controller="ChannelController as c"
+    ng-cloak layout-fill ng-class="{'mobile': c.mobile}"
+    ng-style="{background: 'linear-gradient(45deg, #15152a 0%, ' + c.bg + ' 100%)'}"
+>
 <md-toolbar flex="none" class="" md-theme="dark" id="toolbar">
     <div class="md-toolbar-tools" layout="row">
-        <div flex="none" style="width: 108px; height: 64px; margin-top: 10px; background-image: url('../static/assets/logo.png')"></div>
-        <div flex="none" layout="row" player-inner toolbar-w>
+        <div
+            flex="none" style="width: 108px; height: 64px; margin-top: 10px; background-image: url('../static/assets/logo.png')"
+            md-color-picker ng-model="c.tempBg" ng-change="c.saveBg()"
+        ></div>
+        <div id="left-toolbar" flex="none" layout="row" player-inner toolbar-w>
             <div flex layout="column">
                 <div class="md-title" flex="70">
                     <md-menu>
                         <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)" ng-class="{'online': c.selectedPlayer.online}">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
                             <md-badge ng-if="c.selectedPlayer.online" style="margin-right: 5px; vertical-align: middle;">LIVE</md-badge>
-                            <span class="stream-title">{{ c.channel.status }}</span>
+                            <span class="stream-title">{{ c.channel.status || "¯\\_(ツ)_/¯" }}</span>
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
                             <md-menu-item ng-repeat="player in c.players | orderBy:'player.id' track by player.id " flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
@@ -57,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div flex="grow" layout="row">
+        <div flex="grow" layout="row" id="right-toolbar">
             <div layout-fill layout="row">
                 <div flex="none">
                     <md-button class="md-icon-button" href="https://www.youtube.com/user/ATPGAMESCHANNEL" aria="Youtube" target="_blank">
@@ -78,14 +91,14 @@
                     </md-button>
                 </div>
                 <span flex="grow"></span>
-                <md-button flex="none" class="md-icon-button" ng-click="c.subscribe()" ng-if="!c.subscribed">
+                <!--md-button flex="none" class="md-icon-button" ng-click="c.subscribe()" ng-if="!c.subscribed">
                     <md-tooltip>Подписаться на уведомления</md-tooltip>
                     <md-icon md-svg-icon="notifications-none" style="fill: rgba(255, 255, 255, 0.87);"></md-icon>
                 </md-button>
                 <md-button flex="none" class="md-icon-button" ng-if="c.subscribed">
                     <md-tooltip>Уведомления включены</md-tooltip>
                     <md-icon md-svg-icon="notifications" style="fill: rgba(255, 255, 255, 0.87);"></md-icon>
-                </md-button>
+                </md-button-->
                 <md-button flex="none" class="md-icon-button" aria="Donate" href="https://twitch.streamlabs.com/ATPChannel" target="_blank">
                     <md-tooltip>Пожертвования</md-tooltip>
                     <md-icon md-svg-icon="money" style="fill: rgba(255, 255, 255, 0.87);"></md-icon>
@@ -94,19 +107,23 @@
                     <md-tooltip>Открыть чат в отдельном окне</md-tooltip>
                     <md-icon md-svg-icon="chat" style="fill: rgba(255, 255, 255, 0.87);"></md-icon>
                 </md-button>
+                <md-button flex="none" class="md-icon-button" ng-click="c.wideScreen = !c.wideScreen" aria="Change view">
+                    <md-tooltip>Изменить вид</md-tooltip>
+                    <md-icon md-svg-icon="aspect-ratio" style="fill: rgba(255, 255, 255, 0.87);"></md-icon>
+                </md-button>
             </div>
         </div>
     </div>
 </md-toolbar>
 
-<div id="content" layout="row" flex="grow" layout-align="space-between">
+<div id="content" ng-class="{'layout-row': c.wideScreen, 'layout-column': !c.wideScreen}" flex="grow" layout-align="space-between">
     <div
         flex="none"
         ng-controller="PlayerController as p"
-        layout="column"
+        ng-class="{'layout-column': c.wideScreen, 'layout-row': !c.wideScreen}"
         layout-align="center"
         layout-margin
-        style="background: rgba(0, 0, 0, 0.2); border-radius: 5px;"
+        style="background: rgba(0, 0, 0, 0.2); border-radius: 3px;"
     >
         <div
             flex="none"
@@ -123,8 +140,14 @@
                 ></div>
         </div>
     </div>
-    <div flex="grow" style="min-width:400px" layout="column" layout-margin class="md-whiteframe-10dp">
-        <iframe layout-fill flex="grow" frameborder="0" scrolling="no" id="chat_embed"
+    <div id="chat"
+         flex="grow"
+         layout="column"
+         layout-margin
+         class="md-whiteframe-10dp"
+         style="border-radius: 3px; overflow: hidden; z-index: 1;"
+    >
+        <iframe layout-fill flex="grow" frameborder="0" scrolling="no" id="chat_embed" style="z-index: 0;"
                 src="https://atplay.ch:1337/chat.html"></iframe>
     </div>
 </div>
@@ -146,30 +169,34 @@ var _rollbarConfig = {
 
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
 <script>
-var OneSignal = window.OneSignal || [];
-OneSignal.push(["init", {
-    appId: "e15c72d0-da39-48f9-88b9-b95bfad38a66",
-    autoRegister: false,
-    subdomainName: 'lexek-localhost',
-    httpPermissionRequest: {
-        enable: true
-    },
-    notifyButton: {
-      enable: false
-    }//,
-    //persistNotification: false
-}]);
+var OneSignal = window.OneSignal;
+if (OneSignal) {
+    OneSignal.push(["init", {
+        appId: "e15c72d0-da39-48f9-88b9-b95bfad38a66",
+        autoRegister: false,
+        subdomainName: 'lexek-localhost',
+        httpPermissionRequest: {
+            enable: true
+        },
+        notifyButton: {
+            enable: false
+        }//,
+        //persistNotification: false
+    }]);
+}
 </script>
 
 <script src="/static/vendor/polyfill.js"></script>
 
-<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="/static/vendor/jquery-2.2.4.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 <script src="/static/vendor/angular-audio.js"></script>
+<script src="/static/vendor/tinycolor-min.js"></script>
+<script src="/static/vendor/mdColorPicker.js"></script>
 
 <script src="/static/channels/Channels.js"></script>
 <script src="/static/channels/ChannelController.js"></script>
@@ -177,8 +204,10 @@ OneSignal.push(["init", {
 <script src="/static/channels/PlayerDirective.js"></script>
 
 <script type="text/javascript">
+    document.IS_MOBILE = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator.userAgent);
+
     angular
-        .module('starterApp', ['ngMaterial', 'channels', 'ngAudio'])
+        .module('starterApp', ['ngMaterial', 'channels', 'ngAudio', 'mdColorPicker'])
         .config(function ($mdThemingProvider, $mdIconProvider, $sceDelegateProvider) {
             $mdIconProvider
                 .icon("twitch", "/static/assets/svg/twitch.svg", 1140)
@@ -192,7 +221,8 @@ OneSignal.push(["init", {
                 .icon("goodgame", "/static/assets/svg/goodgame.svg", 170)
                 .icon("money", "/static/assets/svg/money.svg", 48)
                 .icon("notifications", "/static/assets/svg/notifications.svg", 24)
-                .icon("notifications-none", "/static/assets/svg/notifications_none.svg", 24);
+                .icon("notifications-none", "/static/assets/svg/notifications_none.svg", 24)
+                .icon("aspect-ratio", "/static/assets/svg/aspect_ratio.svg", 24);
 
             $mdThemingProvider.definePalette('dark', {
                 "50": "#c1c5da",
@@ -220,11 +250,12 @@ OneSignal.push(["init", {
                 "https://www.twitch.tv/**",
                 "https://player.twitch.tv/**",
                 "https://www.ustream.tv/embed/**",
-                "https://goodgame.ru/nocache/ggplayer/**"
+                "https://goodgame.ru/nocache/ggplayer/**",
+                "https://www.youtube.com/embed/**"
             ]);
         });
 </script>
 
 </body>
-{%endverbatim%}
+<span style="display: none">{%endverbatim%}</span>
 </html>
