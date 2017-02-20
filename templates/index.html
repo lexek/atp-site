@@ -44,13 +44,17 @@
                     <md-menu>
                         <md-button class="md-button" aria-label="channel" flex="none" ng-click="$mdOpenMenu($event)" ng-class="{'online': c.selectedPlayer.online}">
                             <md-icon md-svg-icon="{{ c.selectedPlayer.provider }}"></md-icon>
-                            <md-badge ng-if="c.selectedPlayer.online" style="margin-right: 5px; vertical-align: middle;">LIVE</md-badge>
+                            <span>
+                                <md-icon md-svg-icon="status" ng-style="{'fill': c.getIconColor()}"></md-icon>
+                            </span>
                             <span class="stream-title">{{ c.channel.status || "¯\\_(ツ)_/¯" }}</span>
                         </md-button>
                         <md-menu-content layout="column" md-theme="deep-purple">
                             <md-menu-item ng-repeat="player in c.players | orderBy:'player.id' track by player.id " flex="grow" md-autofocus="player.id === c.selectedPlayer.id">
                                 <md-button ng-click="c.selectChannel(player)">
-                                    <md-badge ng-if="player.online" style="float: right;">LIVE</md-badge>
+                                    <span style="float: right;">
+                                        <md-icon ng-if="player.online"  md-svg-icon="status" style="fill: #259b24; margin: 0; margin-left: 10px;"></md-icon>
+                                    </span>
                                     <md-icon md-svg-icon="{{ player.provider }}"></md-icon>
                                     {{ player.provider }}
                                 </md-button>
@@ -222,7 +226,8 @@ if (OneSignal) {
                 .icon("money", "/static/assets/svg/money.svg", 48)
                 .icon("notifications", "/static/assets/svg/notifications.svg", 24)
                 .icon("notifications-none", "/static/assets/svg/notifications_none.svg", 24)
-                .icon("aspect-ratio", "/static/assets/svg/aspect_ratio.svg", 24);
+                .icon("aspect-ratio", "/static/assets/svg/aspect_ratio.svg", 24)
+                .icon("status", "/static/assets/svg/status.svg", 24);
 
             $mdThemingProvider.definePalette('dark', {
                 "50": "#c1c5da",
@@ -255,6 +260,51 @@ if (OneSignal) {
             ]);
         });
 </script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter32471475 = new Ya.Metrika({
+                    id:32471475,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    ut:"noindex"
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/32471475?ut=noindex" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Rating@Mail.ru counter -->
+<script type="text/javascript">
+var _tmr = _tmr || [];
+_tmr.push({id: "2693992", type: "pageView", start: (new Date()).getTime()});
+(function (d, w, id) {
+  if (d.getElementById(id)) return;
+  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+  ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+})(document, window, "topmailru-code");
+</script><noscript><div style="position:absolute;left:-10000px;">
+<img src="//top-fwz1.mail.ru/counter?id=2693992;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+</div></noscript>
+<!-- //Rating@Mail.ru counter -->
 
 </body>
 <span style="display: none">{%endverbatim%}</span>

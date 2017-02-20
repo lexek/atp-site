@@ -31,6 +31,7 @@
         vm.anyOnline = anyOnline;
         vm.subscribe = subscribe;
         vm.saveBg = saveBg;
+        vm.getIconColor = getIconColor;
         vm.subscribed = false;
         vm.mobile = document.IS_MOBILE;
         vm.bg = '#34447f';
@@ -38,6 +39,18 @@
         vm.wideScreen = true;
 
         activate();
+
+        function getIconColor() {
+            if (vm.selectedPlayer.online) {
+                return '#259b24';
+            } else {
+                if (vm.anyOnline()) {
+                    return '#cddc39';
+                } else {
+                    return 'grey';
+                }
+            }
+        }
 
         function updateState() {
             channelService.fetchState().then(processState);

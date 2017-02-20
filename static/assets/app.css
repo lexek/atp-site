@@ -24,6 +24,7 @@ body {
 }
 
 md-badge {
+    display: inline-block;
     background-color: #F44336;
     color: white;
     padding: 2px 4px;
